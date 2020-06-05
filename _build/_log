@@ -1,0 +1,23 @@
+### Starting build.
+# Target: individual.ml.depends, tags: { package(qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl), extension:ml, file:individual.ml, ocaml, ocamldep, quiet, thread, traverse }
+ocamlfind ocamldep -package qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl -modules individual.ml > individual.ml.depends
+# Target: http.ml.depends, tags: { package(qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl), extension:ml, file:http.ml, ocaml, ocamldep, quiet, thread, traverse }
+ocamlfind ocamldep -package qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl -modules http.ml > http.ml.depends # cached
+# Target: http.cmo, tags: { package(qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl), byte, compile, extension:cmo, extension:ml, file:http.cmo, file:http.ml, implem, ocaml, quiet, thread, traverse }
+ocamlfind ocamlc -c -thread -package qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl -o http.cmo http.ml # cached
+# Target: individual.cmo, tags: { package(qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl), byte, compile, extension:cmo, extension:ml, file:individual.cmo, file:individual.ml, implem, ocaml, quiet, thread, traverse }
+ocamlfind ocamlc -c -thread -package qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl -o individual.cmo individual.ml
++ ocamlfind ocamlc -c -thread -package qcheck,cohttp-lwt-unix,cohttp,lwt,yojson,ppx_deriving.show,ppx_deriving_yojson,qcstm,curl -o individual.cmo individual.ml
+File "individual.ml", line 153, characters 29-36:
+153 |  module APItest = QCSTM.Make(APIConf)
+                                   ^^^^^^^
+Error: Signature mismatch:
+       ...
+       Values do not match:
+         val run_cmd : cmd -> comment list -> string list ref -> bool
+       is not included in
+         val run_cmd : cmd -> state -> sut -> bool
+       File "src/qCSTM.ml", line 38, characters 2-43: Expected declaration
+       File "individual.ml", line 110, characters 6-13: Actual declaration
+Command exited with code 2.
+# Compilation unsuccessful.
